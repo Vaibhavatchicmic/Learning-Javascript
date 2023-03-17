@@ -11,24 +11,69 @@
 // or<script src="path"></script> //can't have both only
 
 'use strict'// must be at the top of script or at the beginning of a function body, fully enable all features of modern JavaScipt, enabled implicitly by including modern features
+// syntax: set of rules how programs are constructed
+    //fixed values are called literrals
+    // variable values are called variables
+    //operators -(+ - * /): arithmatic, =:assignment
+    //expression: combination of vlaues, variables, and operators, which computes to a value, computation is called an evaluation
+    //keywords: used to indentify actions to be performed
+    //Identifiers: javascript names, used to name variables and keywords and functions Must begin with A-Z or a-z ,$ or _ subsequent characters may be letters, digits, underscores, or dollar signs, 
+                    // $ is often used as an alias for the main function in a library.
+                    // varibles staring with _ are conventionally used as an alias for private variables , 
+                    // non-Latin letters are also allowed but not recommended
+    //Unicode caracter set : JS uses the unicode character set covers almost all the characters, punctuations, and symbols
 
-// variables
+//Comments
+    // code after double slashes //(Single line comments) or between /* and  */(Multi line comments) treated as a comment, are ignored not executed
+// variables: containers for storing data
 /**
- * There are 8 data types:
- *  number
- *  bigint
- *  string   
- *  boolean
- *  null-empty or does not exist
- *  undefined-not assigned,function with no return return undefined
- *  object
- *  symbol
- */
+ * There are 8 basic data types: changeble in JS for a variable therefore called dynamically typed(there exist data types but variables are not bound to any of them) 
+ *  1. number: both integers and floating point numbers,
+ *             beside regular numbers, thee are so-called "special numeric values" : Infinity, -Infinity(any really huge no.>64bit(>2^53-1) become Infinity) and NaN( NaN propagats to whole result eg. NaN+1 become NaN, one exception NaN**0 is 1)
+ *             Mathematical operations are safe in JS we can do anythig, divide by zero, treat non-numeric strings as number etc, not cause fatal error get NaN in worst case
+ *             64 bit size
+ *             can use underscore _ as separator: let billion= 1_000_000_000;(play role of synctactic sugar)
+ *             for large no.s use 88e10(89 and 10 zeros) number after e specifies zeros count , 1e-6 for 0.000001
+ *             0xff or 0xFF: 255 (hexadecimal)
+ *             0b11111111: 255 in binary
+ *             0o377: octal of 255
+ *             num.toString(base) return a srtring representation of num in give base
+ *                  12345..toString(2):( =(1234).toString(2) ) two dot used to directly call method on number
+ *              there is loss of precision alert( 0.1 + 0.2 == 0.3 ); // false
+ *  2. bigInt: n at the end(1234393939939203n is BigInt)
+ *  3. string : "abc" 'abc' and `abc${expression}` , no character type in JS string may consist of zero or one or many  
+ *  4. boolean : true or false
+ *  5. null : empty or does not exist
+ *  6. undefined : default initial value for unassigned things, function with no return return undefined
+ *  7. object : special type
+ *  8. symbol : used to create unique identifires for objects
+ * 
+ *  typeof will give type as first letter small('number' not 'Number') but use Number() or String() to convert type explicitly
+ *  typeof undefined // "undefined"
+
+    typeof 0 // "number"
+
+    typeof 10n // "bigint"
+
+    typeof true // "boolean"
+
+    typeof "foo" // "string"
+
+    typeof Symbol("id") // "symbol"
+
+    typeof Math // "object"  
+
+    typeof null // "object"  //officially recognized error
+
+    typeof alert // "function" //there is no special function type in JS , belong to object type but typeof treats them differently, isn't correct but convenient in practice
+    
+    typeof is an operator not a funciton even typeof(x) is just () around x
+*/ 
 console.log(typeof 'abcd')//typeof operator , two exception
     console.log(typeof null) //object, error in language
     console.log(typeof function(){})//function, functions are treated specially
 /**
- * var :default, function scoped, variables declared with var are "hoisted", at the top level create a property, could be redeclared
+ *1 var :function scoped, variables declared with var are "hoisted", at the top level create a property, could be redeclared
  */     console.log(x) //undefined
         var x=5;
         console.log(x) //5
@@ -42,7 +87,7 @@ console.log(typeof 'abcd')//typeof operator , two exception
         console.log(x)
  /* 
  * Added in ES6
- *  let :block scoped, varaible declared by let cannot be redeclared and must be declared befre use
+ *2  let :block scoped, varaible declared by let cannot be redeclared and must be declared befre use
  *  */      //console.log(y) //ReferrenceError :Cannot access 'y' before initialization
             let y=5;
             console.log(y) //5 but not execute becasue of previous lines
@@ -52,20 +97,45 @@ console.log(typeof 'abcd')//typeof operator , two exception
                 let let_var=10
             }
             // console.log(let_var) //error
-/*          
- *  const
+/**          
+ *3  const : 
+ * 
+ * general rule always delcare variables with const, if you think the value of the variable can change use let
+ *
+ * 4 using nothing: make variable global, bad practice and would cause an error in strict mode
  */
+
+// Operators:
+        // types: unary binary
+        // math : + - * / % ** (with + if there is string result will be string if first two numbers then these two numbers are added calculated left to right)
+        //  single + operator(unary before variable) : does nothing to number but if the operand is not number thn converts it into a number (+true => 1 , +'' => 0) same as Number(...) but shorter 
+        // Precedence	Name	        Sign
+                // …	…	…
+                // 14	unary plus	     +
+                // 14	unary negation	 -
+                // 13	exponentiation	 **
+                // 12	multiplication	 *
+                // 12	division	     /
+                // 11	addition	     +
+                // 11	subtraction	     -
+                // …	…	…
+                // 2	assignment	     = (x=value writes the value into x and then returns it)
 
 
 // Interation : pause script execution and don't allow the visitor to interact with the page
-// alert("hello") //need to press ok
+        // alert("hello") //need to press ok
 
-// result = prompt(title,dafault); //to input text default is (optional) initial value of input field
+        // result = prompt(title,dafault); //to input text default is (optional) initial value of input field
 
-// result = confirm(question); //Ok and Cancel
+        // result = confirm(question); //Ok and Cancel
+
+
 //control flow
     // loops c style while, do whle, and for loop
     //switch : uses === for comparisons
+
+
+
 // functions
 function funname(){ //function declaration , if in a if block this can only be use in that block so use function expression
     ;
@@ -84,9 +154,67 @@ function funname(){ //function declaration , if in a if block this can only be u
     let funcname3 =(arg1,arg2,arg3)=> arg1+arg2+arg3;
     console.log(funcname3(1,2,3))
 
+    // function parameters and arguments: parameters are the names listed in the function definitonn but arguments are the real values passed to /received by the function
+            //no data type
+            //no type checking
+            //not check the number of arguments
+        //if functio is called with missing arguments then missing values are set to undefined
 
-    // regex
+        // can have default value
+        function funcname4(x,y=3){
+                return x+y;
+        }
+
+        // functionn rest parameters(...) allow a funciton to treat an indefinite number of arguments as an array
+        function function4(...args){
+            let sum=0;
+            for(let arg of args)sum+=arg;
+            return sum;
+        }
+        console.log(function4(1,2,3,4,5))
+
+        //argument object
+        function sum(){
+            let sum=0;
+            for(let arg in arguments){
+                sum+=arg;
+            }
+            return sum;
+        }
+        console.log(sum(1,2,3,4,5))
+
+
+
+    // regex :syntax: /pattern/modifiers(s)
+                                // modifiers-> g for global match(find all matches rather than stopping after the first match), 
+                                            // i or case-insensitive matching
+                                            // m to perform mulitiline matching
 //stirng manipulation
+    //length
+    let text="abcdefghijk"
+    console.log(text.length)
+
+    //Extracting parts
+    //1 slice
+    console.log(text.slice(2,8))//take start position and end position as parameters
+    console.log(text.slice(7))//only first parameter rest at end
+    console.log(text.slice(-7))
+    console.log(text.slice(-12,-6))
+
+    // 2 substr
+    // 3 substring()
+
+    // replacing string content
+    console.log(text.replace("abc","xyz"))//nto change the string but return a new replaces only the first match, case sensitive by default, can use regular expression
+    // regex to replace caseinsensitive /pattern/i ,no quotes
+    // regex to replace all matches /patterrn/g
+    
+
+
+
+
+
+
 // random
 // file
 // Error handling
