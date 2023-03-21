@@ -39,14 +39,20 @@
  *             0o377: octal of 255
  *             num.toString(base) return a srtring representation of num in give base
  *                  12345..toString(2):( =(1234).toString(2) ) two dot used to directly call method on number
+ * 
  *              there is loss of precision alert( 0.1 + 0.2 == 0.3 ); // false
- *  2. bigInt: n at the end(1234393939939203n is BigInt)
+ *  2. bigInt: n at the end(1234393939939203n is BigInt), cannot have decimals, arithmatic between a BigInt and a Number is not allowed(type conversion lose information), can also be written in hexadecimal,octal or binary
+ */
+let hex=0x393939933993939939n;
+let oct=0o141217416734756734n;
+let bin = 0b101010101001010111111111111111110000000000n;
+/*
  *  3. string : "abc" 'abc' and `abc${expression}` , no character type in JS string may consist of zero or one or many  
  *  4. boolean : true or false
  *  5. null : empty or does not exist
  *  6. undefined : default initial value for unassigned things, function with no return return undefined
  *  7. object : special type
- *  8. symbol : used to create unique identifires for objects
+ *  8. symbol : used to create unique identifires for objects (Symbol.for() and Symbol.keyFor() methods)
  * 
  *  typeof will give type as first letter small('number' not 'Number') but use Number() or String() to convert type explicitly
  *  typeof undefined // "undefined"
