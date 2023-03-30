@@ -1,3 +1,4 @@
+// do from mdn
 // js engins:
 /**
  * V8 :chrome,opera,edge
@@ -10,7 +11,8 @@
 // </script>
 // or<script src="path"></script> //can't have both only
 
-'use strict'// must be at the top of script or at the beginning of a function body, fully enable all features of modern JavaScipt, enabled implicitly by including modern features
+'use strict'// must be at the top of script or at the beginning of a function body, fully enable all features of modern JavaScipt, enabled implicitly by including modern features, default variable become let
+    // in Strict Mode undeclared variables are not automatically global
 // syntax: set of rules how programs are constructed
     //fixed values are called literrals
     // variable values are called variables
@@ -80,6 +82,7 @@ console.log(typeof 'abcd')//typeof operator , two exception
     console.log(typeof function(){})//function, functions are treated specially
 /**
  *1 var :function scoped, variables declared with var are "hoisted", at the top level create a property, could be redeclared
+ In global scope the var declaration and function declarations create global object properites,In global scope let declarations, const declarations and Class declarations are also global that are not properties of global object,
  */     console.log(x) //undefined
         var x=5;
         console.log(x) //5
@@ -91,12 +94,49 @@ console.log(typeof 'abcd')//typeof operator , two exception
 
         var x=6
         console.log(x)
+
+        // If you let-declare a variable that has the same name as a parameter, you get a static (load-time) error:
+
+        function func(arg) {
+            let arg; // static error: duplicate declaration of `arg`//work for var
+        }
+        // Doing the same inside a block shadows the parameter:
+
+        function func(arg) {
+            {
+                let arg; // shadows parameter `arg`
+            }
+        }
+
+    
+        //If parameter have default values, they are treated like a sequence of let statements and are subject to temporal dead zones
+        // OK: `y` accesses `x` after it has been declared
+            function foo(x=1, y=x) {
+                return [x, y];
+            }
+            foo(); // [1,1]
+
+            // Exception: `x` tries to access `y` within TDZ
+            function bar(x=y, y=2) {
+                return [x, y];
+            }
+            bar(); // ReferenceError
  /* 
  * Added in ES6
- *2  let :block scoped, varaible declared by let cannot be redeclared and must be declared befre use
+ *2  let :block scoped, varaible declared by let cannot be redeclared and must be declared befre use, bind to global variable (delete with delete keyword)
+ */
+ let arr = [];
+ for (let i=0; i < 3; i++) {
+     arr.push(() => i);
+ }
+ console.log(arr.map(x => x())); // [0,1,2] //In loops we get a fresh binding for each iteration if we let-declare a variable,(for, for-in and for-of), but var declaration leads to a single binding for the whole loop and same for const
+// var_def=10
+// delete var_def;
+// console.log(var_var)
+ /*
  *  */      //console.log(y) //ReferrenceError :Cannot access 'y' before initialization
             let y=5;
-            console.log(y) //5 but not execute becasue of previous lines
+            console.log("y:",y) //5 but not execute becasue of previous lines
 
             if(true)
             {
@@ -104,7 +144,21 @@ console.log(typeof 'abcd')//typeof operator , two exception
             }
             // console.log(let_var) //error
 /**          
- *3  const : 
+ *3  const : same as let but not change
+ */
+// const does not affect whether the value of a constant itself is mutable or not , for an object we can change object properties
+const obj={};
+obj.a=10;
+console.log(obj);
+
+//obj = {} // it will give Typeerror
+
+// if we wanted to obj to truly be a constant, we have to freeze its value
+Object.freeze(obj)
+// obj.b=20; cause TypeError
+
+
+ /*
  * 
  * general rule always delcare variables with const, if you think the value of the variable can change use let
  *
@@ -177,17 +231,17 @@ function funname(){ //function declaration , if in a if block this can only be u
             for(let arg of args)sum+=arg;
             return sum;
         }
-        console.log(function4(1,2,3,4,5))
+        console.log("function4() :",function4(1,2,3,4,5))
 
         //argument object
         function sum(){
             let sum=0;
-            for(let arg in arguments){
+            for(let arg of arguments){
                 sum+=arg;
             }
             return sum;
         }
-        console.log(sum(1,2,3,4,5))
+        console.log("sum() :",sum(1,2,3,4,5))
 
 
 
@@ -222,8 +276,39 @@ function funname(){ //function declaration , if in a if block this can only be u
 
 
 // random
+console.log(Math.random()) //return a random no. beween 0(inclusive), and 1 (exclusive)
+console.log(Math.floor(Math.random()*100))//random integer from 0 to 99
+console.log(Math.floor(Math.random()*101))//random integer from 0 to 100
+
+console.log(Math.floor(Math.random()*(35-12+1))+12)//generate random no betwenn 12 and 35
+
+
 // file
+
+
+
 // Error handling
 /**
- * Any error haults the call stack
+ * Any error not handled haults the call stack
  */
+try{
+    throw 10; //to create a custom error, we can throw an exception as String, Number, Boolean or Object
+}
+catch(err){
+    console.log("error :",err);
+}
+finally{
+    console.log("always executes");
+}
+
+// Error Object
+    // JS has a built in error object that provides error information when an error occurs , provides two useful properties : name and message
+    // Six different values can be returned by the error name property:
+
+    //     Error Name	Description
+    //     EvalError	An error has occurred in the eval() function
+    //     RangeError	A number "out of range" has occurred
+    //     ReferenceError	An illegal reference has occurred
+    //     SyntaxError	A syntax error has occurred
+    //     TypeError	A type error has occurred
+    //     URIError	An error in encodeURI() has occurred

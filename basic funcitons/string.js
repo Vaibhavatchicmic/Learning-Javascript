@@ -48,9 +48,6 @@ Form feed means advance downward to the next "page". It was commonly used as pag
         // provide easy way to interpolate variables and expressions into strings using ${expression}
 
 
-// chicmic@chicmic-MS-7D46:~/Desktop/codes/Learning/JavaScript$ node
-// Welcome to Node.js v16.19.1.
-// Type ".help" for more information.
 // > const str= "A sting primitive"
 // undefined
 // > const str2=new String("\
@@ -74,8 +71,6 @@ Form feed means advance downward to the next "page". It was commonly used as pag
 // true
 // > a===b
 // true
-// > c=new string("A string")
-// Uncaught ReferenceError: string is not defined
 // > c=new String("A string")
 // [String: 'A string']
 // > c==a
@@ -96,8 +91,6 @@ Form feed means advance downward to the next "page". It was commonly used as pag
 // undefined
 // > str2.length
 // 14
-// > str.lenght
-// undefined
 // > str.length
 // 17
 // > str.slice(2,5)
@@ -188,7 +181,7 @@ Form feed means advance downward to the next "page". It was commonly used as pag
 // undefined
 // > //retun position
 // undefined
-// > //search() method cannot take a second start position argument, indexOf() method cannot us RegExp
+// > //search() method cannot take a second start position argument, indexOf() method cannot use RegExp
 // undefined
 // > str.match("sting")
 // [ 'sting', index: 2, input: 'A sting primitive', groups: undefined ]
@@ -200,8 +193,6 @@ Form feed means advance downward to the next "page". It was commonly used as pag
 // [ 'A', index: 0, input: 'A sting primitive', groups: undefined ]
 // > str.match(/i/g)
 // [ 'i', 'i', 'i', 'i' ]
-// > .forEach(val=>console.log(val))
-// Invalid REPL keyword
 // > str.match(/i/g).forEach(val=>console.log(val))
 // i
 // i

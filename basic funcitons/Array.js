@@ -4,12 +4,12 @@
 //      zero indexed
 //      create shallow copy(share same referece, in deep copy source and copy are completely independent)
 
-// a=[]
-// a[2]=4
-// a['2']=5
-// console.log(a['2'])
+a=[]
+a[2]=4
+a['2']=5
+console.log(a)
 
-//splice(start[,deleteCount[,item1,[item2,itemN]]]) :delete deleteCount element from start and add items to change contents of an arry by removing, replacing or adding elements in place
+//splice(start[,deleteCount[,item1,[item2,itemN]]]) :delete deleteCount element from start and add items to change contents of an array by removing, replacing or adding elements in place
 //return array of removed elements
 // a[10]=4
 // console.log(a.length)
@@ -48,13 +48,6 @@
 // 1
 // 2
 // undefined
-// > for(i in arr){console.log(i,end="");}
-// 0 
-// 1 
-// 2 
-// undefined
-// > app.push(1)
-// Uncaught ReferenceError: app is not defined
 // > arr.push(1)
 // 4
 // > arr.pop()
@@ -93,12 +86,8 @@
 // 1
 // > arr
 // [ 2, 10, 10, 11 ]
-// > arr.unshift
-// [Function: unshift]
 // > arr.unshift("abc")
 // 5
-// > arrr
-// Uncaught ReferenceError: arrr is not defined
 // > arr
 // [ 'abc', 2, 10, 10, 11 ]
 // > arr.length
@@ -121,8 +110,6 @@
 // [ 10, 10, 11 ]
 // > arr
 // [ 'abc', 2, 10, 10, 11 ]
-// > arr.toString
-// [Function: toString]
 // > arr.toString()
 // 'abc,2,10,10,11'
 // > arr+arr2
@@ -149,14 +136,6 @@
 // [ 'abc', 0, 2, 10, 10, 11 ]
 // > arr.sort((a,b)=>{return b-a})//in descendig order
 // [ 'abc', 11, 10, 10, 2, 0 ]
-// > math.max.apply(null,arr)
-// Uncaught ReferenceError: math is not defined
-// > import 'math'
-// import 'math'
-// ^^^^^^
-
-// Uncaught:
-// SyntaxError: Cannot use import statement inside the Node.js REPL, alternatively use dynamic import
 // > Math.max.apply(null,arr)
 // NaN
 // > arr
@@ -165,10 +144,6 @@
 // 'abc'
 // > Math.max.apply(null,arr)
 // 11
-// > c
-// Uncaught ReferenceError: c is not defined
-// > x
-// Uncaught ReferenceError: x is not defined
 // > let x = {x: 10}
 // undefined
 // > func
@@ -272,11 +247,6 @@
 // 33
 // > //from right to left
 // undefined
-// > arr.every((val,ind,arr)=>{
-// ... return value>1;})
-// Uncaught ReferenceError: value is not defined
-//     at REPL424:2:1
-//     at Array.every (<anonymous>)
 // > arr.every((val,ind,arr)=>{
 // ... return val>1;})
 // false
@@ -391,7 +361,7 @@
 // [ '0', '1', '2', '3', '4' ]
 // > arr.indexOf(10)
 // 1
-// > arr.lastIndexOf(10)
+// > arr.lastIndexOf(10)  //it searches backwards
 // 2
 // > arr.find((val,index,array)=>{
 // ... return val>10;

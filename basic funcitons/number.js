@@ -15,8 +15,6 @@ console.log(Number.isSafeInteger(5e15),Number.isSafeInteger(5e16))
 // '500'
 // > num.toExponential()
 // '5e+2'
-// > num.toExponential(6)//accurate up to 6 digits
-// '5.000000e+2'
 // > num.toExponential(6)//accurate up to 6 no. of decimals
 // '5.000000e+2'
 // > num.toFixed(2)//return string with the number with a specified number of decimals

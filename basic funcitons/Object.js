@@ -2,6 +2,8 @@
 //all objects in js are instance of Object
 // only object in core js that has immutable prototype
 
+// can't run for in loop with objects
+
 // objec constructor
 
 //using object literal 
@@ -36,7 +38,7 @@ for(let i in obj1){
 // Add new property ->simply give value
 obj1.property2=4;
 //Delete property ->use delete keyword
-delete obj1.fun;//delete both the value and property, used on object properties , has no effect on inherited properties, simple variables or functions, not sue on predefined js obj properties will crash app
+delete obj1.fun;//delete both the value and property, used on object properties , has no effect on inherited properties, simple variables or functions, not use on predefined js obj properties will crash app
 var var1=10
 delete var1
 console.log(var1)// a not deleted
@@ -149,7 +151,7 @@ console.log(obj3.fun(),obj3.fun2());
 // the prototype is an object that is associated with every function and objects by default in JS, where function's prototype property is accessible and modifiable and object's prototype property is not visible
 // the prototype object is special type of enumerable object to which additional properties can be attached to it which wil be shared across all the instances of it's constructor function
 Class2.prototype.fun3= function(){
-    console.log("in funciton fun3 made with help of prototype")
+    console.log("in funciton fun3 made with help of prototype",this)
 }
 obj3.fun3();
 
